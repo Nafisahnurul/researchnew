@@ -1,0 +1,39 @@
+<% include ./partials/header.ejs %>
+
+<table>
+    <tr>
+        <th>Mahasiswa</th>
+        <th>Psikolog</th>
+        <th>Jenis Layanan</th>
+        <th>Tanggal</th>
+    </tr>
+    <% requests.forEach(function (req){ %>
+    <tr>
+        <td>
+            <%=req.student%>
+        </td>
+        <td>
+            <%=req.psychologist%>
+        </td>
+        <td>
+            <%=req.type%>
+        </td>
+        <td>
+            <%=moment(req.date).format("DD/MM/YYYY, HH:mm")%>
+        </td>
+        <td>
+            <form action="/schedule/sessionhistory" method="post">
+                <row>
+                    <div class="form-group">
+                        <input type="text" name="rid" value="<%=req._id%>" hidden>
+                        <input type="submit" name="completed" value="Completed">
+                        <input type="submit" name="cancel" value="Cancel">
+                    </div>
+                </row>
+            </form>
+        </td>
+    </tr>
+    <% }); %>
+</table>
+
+<% include ./partials/footer.ejs %>

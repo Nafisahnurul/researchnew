@@ -1,0 +1,17 @@
+
+ROUTE                   PURPOSE
+---BAGIAN INDEX---
+/                           Halaman utama, welcome page, ato apapun
+/about                      Halaman tentang, kontak, alamat, dll
+
+---BAGIAN STUDENT---
+/students/login             Login menggunakan CAS Protocol dari ITB
+/students/logout            Logout (belum kelar)
+/students/services          Buat daftar layanan
+
+---BAGIAN PSIKOLOG---
+/psychologist/register      Buat daftarin psikolog baru,
+/psychologist/login         Login
+
+/schedule/requests          Liat request yang ada
+/schedule/sessionhistory    Liat riwayat sesi layanan

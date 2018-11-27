@@ -1,0 +1,33 @@
+<% include ./partials/header.ejs %>
+
+<div class="container">
+    <form action="/schedule/services" method="post">
+        <div class="form-group">
+            <input type="text" class="form-control" name="request[student]" value="<%=user.name%>" readonly>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" value="<%=user.nim%>" disabled>
+        </div>
+        <div class="form-group">
+            <select class="form-control" name="request[type]" required>
+                <option value="konseling">Konseling</option>
+                <option value="terapi">Terapi</option>
+                <option value="seminar">Seminar</option>
+                <option value="training">Training</option>
+                <option></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <input id="input" width="312" name="request[date]" required />
+            <script>
+                $('#input').datetimepicker({ footer: true, modal: true });
+            </script>
+        </div>
+        <div class="form-group">
+            <input type="hidden" name="request[status]" value="pending">
+        </div>
+        <input type="submit">
+    </form>
+</div>
+
+<% include ./partials/footer.ejs %>

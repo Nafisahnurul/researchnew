@@ -1,0 +1,22 @@
+<% include ./partials/header.ejs %>
+
+<table>
+    <% sessions.forEach(function (session){ %>
+    <tr>
+        <td>
+            <%=session.student%>
+        </td>
+        <td>
+            <%=session.psychologist%>
+        </td>
+        <td>
+            <form action="/sessions/<%=session._id%>" method="post">
+                <input type="text" name="remark" placeholder="catatan sesi">
+                <input type="submit">
+            </form>
+        </td>
+    </tr>
+    <% }) %>
+</table>
+
+<% include ./partials/footer.ejs %>
