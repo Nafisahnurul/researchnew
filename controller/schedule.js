@@ -42,8 +42,8 @@ router.post("/", isPsyLoggedIn, function (req, res) {
     });
 });
 
-router.get("/requests", function (req, res) {
-    Request.find({}, function (err, allRequests) {
+router.get("/requests", isPsyLoggedIn, function (req, res) {
+    Request.find({psychologist: req.user.username}, function (err, allRequests) {
         if (err) {
             console.log(err);
         } else {
@@ -52,8 +52,8 @@ router.get("/requests", function (req, res) {
     });
 });
 
-router.get("/sessionhistory", function (req, res) {
-    SessionHistory.find({}, function (err, allSessionHistory) {
+router.get("/sessionhistory", isPsyLoggedIn, function (req, res) {
+    SessionHistory.find({psychologist: req.user.username}, function (err, allSessionHistory) {
         if (err) {
             console.log(err);
         } else {
@@ -62,7 +62,7 @@ router.get("/sessionhistory", function (req, res) {
     });
 });
 
-router.post("/sessionhistory", function (req, res) {
+router.post("/sessionhistory", isPsyLoggedIn, function (req, res) {
     if (req.body.completed == "Completed") {
         Request.findById(req.body.rid, function (err, r) {
             if (err) {
@@ -76,14 +76,11 @@ router.post("/sessionhistory", function (req, res) {
                     endTime: moment().format(),
                     remark: ""
                 }
-                console.log(sh);
                 Psychologist.findOne({ name: sh.psychologist }, function (err, found) {
                     if (err) {
                         console.log(err);
                     } else {
                         found.schedule.forEach(function (s, i) {
-                            console.log(s.start);
-                            console.log(sh.startTime);
                             if (moment(s.start).isSame(sh.startTime)) {
                                 console.log("splicing", found.schedule.splice(i, 1));
                                 found.markModified('schedule');

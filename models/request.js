@@ -5,7 +5,6 @@ var requestSchema = new mongoose.Schema({
     student: String,
     type: String,
     date: Date
-
 });
 
 module.exports = mongoose.model("Request", requestSchema);
