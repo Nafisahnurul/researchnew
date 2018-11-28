@@ -43,7 +43,7 @@ router.post("/", isPsyLoggedIn, function (req, res) {
 });
 
 router.get("/requests", isPsyLoggedIn, function (req, res) {
-    Request.find({psychologist: req.user.username}, function (err, allRequests) {
+    Request.find({ psychologist: req.user.username }, function (err, allRequests) {
         if (err) {
             console.log(err);
         } else {
@@ -53,7 +53,7 @@ router.get("/requests", isPsyLoggedIn, function (req, res) {
 });
 
 router.get("/sessionhistory", isPsyLoggedIn, function (req, res) {
-    SessionHistory.find({psychologist: req.user.username}, function (err, allSessionHistory) {
+    SessionHistory.find({ psychologist: req.user.username }, function (err, allSessionHistory) {
         if (err) {
             console.log(err);
         } else {
@@ -101,6 +101,20 @@ router.post("/sessionhistory", isPsyLoggedIn, function (req, res) {
                                 res.redirect('back');
                             }
                         });
+                    }
+                });
+            }
+        });
+    } else if (req.body.cancel == "Cancel") {
+        Psychologist.findOne({ name: sh.psychologist }, function (err, found) {
+            if (err) {
+                console.log(err);
+            } else {
+                Request.findByIdAndDelete(req.body.rid, function (err, dr) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        res.redirect('back');
                     }
                 });
             }

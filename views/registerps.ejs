@@ -1,10 +1,41 @@
 <% include ./partials/header.ejs %>
-
-<form action="/psychologist/register" method="post">
-    <input name="a[name]" type="text">
-    <input name="a[id]" type="text">
-    <input name="password" type="password">
-    <input type="submit">
+<style>
+    body {
+        background-color: #4b9dd3;
+        font-family: 'Arial';
+        padding: 30pt;
+    }
+    form {
+        background-color: #12406a;
+        padding: 20pt;
+        width: 15cm;
+    }
+    label {
+        color : #ffffff;
+    }
+    div {
+        margin-bottom: 30px;
+    }
+    input[type="text"] {
+        width: 10cm;
+    }
+    input[type="password"]{
+        width: 10cm;
+    }
+    input:hover {
+        border-color: #4b9dd3;
+        border-width: 2px;
+    }
+</style>
+<h1>Registrasi Psikolog</h1>
+<form action="/psychologist/register" method="post" name="registerps" >
+    <label>Nama Anda</label>
+    <div><input name="a[name]" type="text"></div>
+    <label>Id Anda</label></div>
+    <div><input name="a[id]" type="text"></div>
+    <label>Password</label></div>
+    <div><input name="password" type="password"></div>
+    <div><input type="submit"></div>
 </form>
 
 <% include ./partials/footer.ejs %>

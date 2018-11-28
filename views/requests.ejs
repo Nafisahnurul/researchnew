@@ -1,6 +1,58 @@
 <% include ./partials/header.ejs %>
-
-<table>
+<style>
+    body {
+        background-color: #4b9dd3;
+        font-family: 'Arial';
+        padding: 30pt;
+    }
+    a {
+        color: #ffffff;
+        margin-left: 20pt;
+    }
+    a:hover{
+        color: #12406a;
+    }
+    th {
+        background-color: #12406a;
+        color: #ffffff;
+        font-size: 20pt;
+        border-style: solid;
+        border-color: #ffffff;
+        border-width: 1px;
+    }
+    table {
+        border-style: solid;
+        border-color: #ffffff;
+        border-width: 1px;
+    }
+    td {
+        border-style: solid;
+        border-color: #ffffff;
+        border-width: 1px;
+        background-color: #33363b;
+        color: #ffffff;
+    }
+    input[type="text"] {
+        width: 3cm;
+    }
+    input[type="text"]:hover { 
+        border-color: #4b9dd3;
+        border-width: 2px;
+    }
+    input[type="submit"] {
+        width: 2cm;
+    }
+    input[name="completed"]:hover {
+        border-color: green;
+        border-width: 2px;
+    }
+    input[name="cancel"]:hover {
+        border-color: red;
+        border-width: 2px;
+    }
+</style>
+<h1 align="center" style="margin-bottom: 2cm">Daftar Peminta Layanan</h1>
+<table align="center">
     <tr>
         <th>Mahasiswa</th>
         <th>Psikolog</th>
