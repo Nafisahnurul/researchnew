@@ -39,7 +39,7 @@ router.post("/", isPsyLoggedIn, function (req, res) {
             psy.markModified('schedule')
             psy.save();
         }
-        res.redirect("/");
+        res.redirect("/schedule/");
     });
 });
 
@@ -99,7 +99,7 @@ router.post("/sessionhistory", isPsyLoggedIn, function (req, res) {
                             if (err) {
                                 console.log(err);
                             } else {
-                                res.redirect('back');
+                                res.redirect('/schedule/sessionhistory');
                             }
                         });
                     }
@@ -130,7 +130,7 @@ router.post("/sessionhistory", isPsyLoggedIn, function (req, res) {
                             }
                         });
                     }
-                    res.redirect('back');
+                    res.redirect('/schedule/sessionhistory');
                 });
             }
         });
