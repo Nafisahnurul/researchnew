@@ -47,7 +47,7 @@ router.get("/login", function (req, res) {
                                         });
                                     } else {
                                         req.session.user = found;
-                                        res.redirect("/");
+                                        res.redirect("/student/services");
                                     }
                                 })
                             } else {
