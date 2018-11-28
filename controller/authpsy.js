@@ -15,7 +15,7 @@ router.post("/register", function (req, res) {
             return res.render("register");
         }
         passport.authenticate("local")(req, res, function () {
-            res.redirect("/psychologist/request");
+            res.redirect("/schedule/requests");
         });
     });
 });
@@ -29,7 +29,7 @@ router.get("/login", function (req, res) {
 });
 
 router.post("/login", passport.authenticate("local", {
-    successRedirect: "/psychologist/request",
+    successRedirect: "/schedule/requests",
     failureRedirect: "/psychologist/login",
 }), function (req, res) {
 });

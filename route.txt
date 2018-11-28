@@ -6,12 +6,13 @@ ROUTE                   PURPOSE
 
 ---BAGIAN STUDENT---
 /students/login             Login menggunakan CAS Protocol dari ITB
-/students/logout            Logout (belum kelar)
+/students/logout            Logout (local, bukan dari CAS)
 /students/services          Buat daftar layanan
 
 ---BAGIAN PSIKOLOG---
 /psychologist/register      Buat daftarin psikolog baru,
 /psychologist/login         Login
 
+/schedule                   Liat / bikin schedule baru buat psikolog
 /schedule/requests          Liat request yang ada
 /schedule/sessionhistory    Liat riwayat sesi layanan
