@@ -4,6 +4,7 @@ var express = require('express'),
 
 var Psychologist = require('../models/psychologist'),
     Request = require('../models/request'),
+    Student = require('../models/student'),
     SessionHistory = require('../models/sessionhistory');
 
 router.get("/", isPsyLoggedIn, function (req, res) {
@@ -106,16 +107,30 @@ router.post("/sessionhistory", isPsyLoggedIn, function (req, res) {
             }
         });
     } else if (req.body.cancel == "Cancel") {
-        Psychologist.findOne({ name: sh.psychologist }, function (err, found) {
+        Request.findByIdAndDelete(req.body.rid, function (err, dr) {
             if (err) {
                 console.log(err);
             } else {
-                Request.findByIdAndDelete(req.body.rid, function (err, dr) {
+                Psychologist.findOne({ name: dr.psychologist }, function (err, found) {
                     if (err) {
                         console.log(err);
                     } else {
-                        res.redirect('back');
+                        found.schedule.forEach(function (s, i) {
+                            if (moment(s.start).isSame(dr.start)) {
+                                console.log("splicing", found.schedule.splice(i, 1));
+                                found.markModified('schedule');
+                                found.save();
+                            }
+                        });
+                        Student.findOne({ name: dr.student }, function (err, stud) {
+                            if (err) {
+                                console.log(err);
+                            } else {
+                                stud.message = moment().calendar() + "    : Permintaan layanan anda untuk " + dr.type + " pada " + moment(dr.date).calendar() + " telah dibatalkan, silakan melakukan permohonan layanan lagi";
+                            }
+                        });
                     }
+                    res.redirect('back');
                 });
             }
         });

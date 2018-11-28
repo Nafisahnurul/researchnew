@@ -1,5 +1,5 @@
 var express = require('express'),
-    router  = express.Router(),
+    router = express.Router(),
     moment = require('moment'),
     request = require('request'),
     parseXML = require('xml2js').parseString,
@@ -17,40 +17,45 @@ router.get("/login", function (req, res) {
             var service = "service=" + encodeURI("https://" + req.headers.host + "/student/login");
             var ticket = "ticket=" + req.query.ticket;
             request("https://login.itb.ac.id/cas/serviceValidate?" + service + "&" + ticket, function (err, response, body) {
-                parseXML(body, { tagNameProcessors: [stripNS] }, function (err, result) {
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        if (result.serviceResponse.authenticationSuccess && result.serviceResponse.authenticationSuccess.length) {
-                            var newStudent = {
-                                name: result.serviceResponse.authenticationSuccess[0].attributes[0].cn,
-                                nim: result.serviceResponse.authenticationSuccess[0].attributes[0].itbNIM[0],
-                                prodi: result.serviceResponse.authenticationSuccess[0].attributes[0].ou[0],
-                                email: result.serviceResponse.authenticationSuccess[0].attributes[0].mail[0]
-                            }
-                            Student.findOne({ nim: newStudent.nim }, function (err, found) {
-                                if (err) {
-                                    console.log(err);
-                                } else if (!found) {
-                                    Student.create(newStudent, function (err, newStudent) {
-                                        if (err) {
-                                            console.log(err);
-                                        } else {
-                                            console.log("log    : Mahasiswa baru ditambahkan ke dalam database", newStudent.nim);
-                                            req.session.user = newStudent;
-                                            res.redirect("/");
-                                        }
-                                    });
-                                } else {
-                                    req.session.user = found;
-                                    res.redirect("/");
-                                }
-                            })
+                if (err) {
+                    console.log(err);
+                } else {
+                    parseXML(body, { tagNameProcessors: [stripNS] }, function (err, result) {
+                        if (err) {
+                            console.log(err);
                         } else {
-                            res.redirect("/student/login");
+                            if (result.serviceResponse.authenticationSuccess && result.serviceResponse.authenticationSuccess.length) {
+                                var newStudent = {
+                                    name: result.serviceResponse.authenticationSuccess[0].attributes[0].cn,
+                                    nim: result.serviceResponse.authenticationSuccess[0].attributes[0].itbNIM[0],
+                                    prodi: result.serviceResponse.authenticationSuccess[0].attributes[0].ou[0],
+                                    email: result.serviceResponse.authenticationSuccess[0].attributes[0].mail[0],
+                                    message: ""
+                                }
+                                Student.findOne({ nim: newStudent.nim }, function (err, found) {
+                                    if (err) {
+                                        console.log(err);
+                                    } else if (!found) {
+                                        Student.create(newStudent, function (err, newStudent) {
+                                            if (err) {
+                                                console.log(err);
+                                            } else {
+                                                console.log("log    : Mahasiswa baru ditambahkan ke dalam database", newStudent.nim);
+                                                req.session.user = newStudent;
+                                                res.redirect("/");
+                                            }
+                                        });
+                                    } else {
+                                        req.session.user = found;
+                                        res.redirect("/");
+                                    }
+                                })
+                            } else {
+                                res.redirect("/student/login");
+                            }
                         }
-                    }
-                });
+                    });
+                }
             });
         } else {
             res.redirect(encodeURI("https://login.itb.ac.id/cas/" + "login?service=" + "https://" + req.headers.host + "/student/login"))
@@ -58,7 +63,7 @@ router.get("/login", function (req, res) {
     }
 });
 
-router.get("/logout", function(req, res){
+router.get("/logout", function (req, res) {
     res.clearCookie('user_sid');
     res.redirect("/");
 });
