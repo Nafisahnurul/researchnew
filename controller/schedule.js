@@ -25,13 +25,15 @@ router.post("/", isPsyLoggedIn, function (req, res) {
             if (!Array.isArray(psy.schedule) || !psy.schedule.length) {
                 var newS = [{
                     start: req.body.startTime,
-                    end: req.body.endTime
+                    end: req.body.endTime,
+                    type: "self"
                 }]
                 psy.schedule = newS;
             } else {
                 var newS = {
                     start: req.body.startTime,
-                    end: req.body.endTime
+                    end: req.body.endTime,
+                    type: "self"
                 }
                 psy.schedule.push(newS);
             }

@@ -62,14 +62,17 @@
         <td>
             <%=session.psychologist%>
         </td>
-        <td>
+        <!-- <td>
             <form action="/sessions/<%=session._id%>" method="post">
                 <div><input type="text" name="remark" placeholder="catatan sesi"></div>
                 <div><input type="submit"></div>
             </form>
-        </td>
+        </td> -->
     </tr>
     <% }) %>
 </table>
+<form action="/schedule/requests" method="get">
+    <input type="submit" name="back" value="Back" style="width:100%">
+ </form>
 
 <% include ./partials/footer.ejs %>
