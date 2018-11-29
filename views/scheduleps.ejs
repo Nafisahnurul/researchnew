@@ -64,10 +64,10 @@
     <% psychologist.schedule.forEach(function (s){ %>
         <tr>
             <td>
-                <%=s.start%>
+                <%=moment(s.start).calendar()%>
             </td>
             <td>
-                <%=s.end%>
+                <%=moment(s.end).calendar()%>
             </td>
         </tr>
         <% }) %>

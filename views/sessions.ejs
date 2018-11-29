@@ -52,7 +52,10 @@
     <tr>
         <th>Mahasiswa</th>
         <th>Psikolog</th>
-        <th>Sesi</th>
+        <th>Waktu Mulai Sesi</th>
+        <th>Waktu Selesai</th>
+        <th>Catatan</th>
+        <!-- <th>Sesi</th> -->
     </tr>
     <% sessions.forEach(function (session){ %>
     <tr>
@@ -61,6 +64,24 @@
         </td>
         <td>
             <%=session.psychologist%>
+        </td>
+        <td>
+            <%=method(session.startTime).format('MMMM Do YYYY, h:mm a')%>
+        </td>
+        <td>
+            <%=method(session.endTime).format('MMMM Do YYYY, h:mm a')%>
+        </td>
+        <td>
+            <% if (session.remark = "") { %>
+            <form action="/schedule/sessionhistory/<%=session._id%>" method="post">
+                <div class='row'>
+                    <input type='text' name = 'remark' placeholder='isi catatan sesi...'>
+                    <input type='submit'>
+                </div>
+            </form>
+            <% } else { %>
+            <%=session.remark%>
+            <% } %>
         </td>
         <!-- <td>
             <form action="/sessions/<%=session._id%>" method="post">
@@ -73,6 +94,6 @@
 </table>
 <form action="/schedule/requests" method="get">
     <input type="submit" name="back" value="Back" style="width:100%">
- </form>
+</form>
 
 <% include ./partials/footer.ejs %>

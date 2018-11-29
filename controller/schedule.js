@@ -12,7 +12,7 @@ router.get("/", isPsyLoggedIn, function (req, res) {
         if (err) {
             console.log(err);
         } else {
-            res.render("scheduleps", { psychologist: psy })
+            res.render("scheduleps", { psychologist: psy, moment: moment})
         }
     })
 });
@@ -60,7 +60,7 @@ router.get("/sessionhistory", isPsyLoggedIn, function (req, res) {
         if (err) {
             console.log(err);
         } else {
-            res.render("sessions", { sessions: allSessionHistory });
+            res.render("sessions", { sessions: allSessionHistory, moment: moment });
         }
     });
 });
@@ -137,6 +137,17 @@ router.post("/sessionhistory", isPsyLoggedIn, function (req, res) {
             }
         });
     }
+});
+
+router.post("/sessionhistory/:id", isPsyLoggedIn, function (req, res) {
+    SessionHistory.findById(req.params.id, function(err, session){
+        if (err) {
+            console.log(err);
+        } else {
+            session.remark = req.body.remark;
+            session.save();
+        }
+    });
 });
 
 function isPsyLoggedIn(req, res, next) {
