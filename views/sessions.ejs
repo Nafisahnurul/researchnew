@@ -72,7 +72,7 @@
             <%=moment(session.endTime).format('MMMM Do YYYY, h:mm a')%>
         </td>
         <td>
-            <% if (session.remark = "") { %>
+            <% if (session.remark == "") { %>
             <form action="/schedule/sessionhistory/<%=session._id%>" method="post">
                 <div class='row'>
                     <input type='text' name = 'remark' placeholder='isi catatan sesi...'>

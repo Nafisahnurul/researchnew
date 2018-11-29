@@ -1,5 +1,11 @@
 <% include ./partials/header.ejs %>
 
+
+<% if (user.message != ""){ %>
+    <p>Anda memiliki pesan baru</p>
+    <p><em><%=user.message%></em></p>
+<% } %>
+
 <div class="container">
     <form action="/student/services" method="post">
         <div class="form-group">
