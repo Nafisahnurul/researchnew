@@ -11,7 +11,7 @@ var Psychologist = require('../models/psychologist'),
 
 router.get("/login", function (req, res) {
     if (!isEmpty(req.cookies)) {
-        res.send("cookie detected");
+        res.send("Please clear your cookies");
     } else {
         if (req.query.ticket) {
             var service = "service=" + encodeURI("https://" + req.headers.host + "/student/login");

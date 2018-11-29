@@ -129,6 +129,8 @@ router.post("/sessionhistory", isPsyLoggedIn, function (req, res) {
                                 console.log(err);
                             } else {
                                 stud.message = moment().calendar() + "    : Permintaan layanan anda untuk " + dr.type + " pada " + moment(dr.date).calendar() + " telah dibatalkan, silakan melakukan permohonan layanan lagi";
+                                stud.markModified('message');
+                                stud.save();
                             }
                         });
                     }
@@ -146,6 +148,7 @@ router.post("/sessionhistory/:id", isPsyLoggedIn, function (req, res) {
         } else {
             session.remark = req.body.remark;
             session.save();
+            res.redirect("/schedule/sessionhistory")
         }
     });
 });
