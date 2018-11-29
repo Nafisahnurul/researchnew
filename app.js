@@ -9,7 +9,7 @@ var express = require('express'),
 var Psychologist = require('./models/psychologist');
 
 var authPsyRoutes = require('./controller/authpsy'),
-    authStdRoutes = require('./controller/student'),
+    stdRoutes = require('./controller/student'),
     scheduleRoutes= require('./controller/schedule'),
     indexRoutes   = require('./controller/index');
 
