@@ -74,7 +74,7 @@
         <td>
             <% if (session.remark == "") { %>
             <form action="/schedule/sessionhistory/<%=session._id%>" method="post">
-                <div class='row'>
+                <div class='form-group'>
                     <input type='text' name = 'remark' placeholder='isi catatan sesi...'>
                     <input type='submit'>
                 </div>

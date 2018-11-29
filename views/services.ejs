@@ -1,21 +1,22 @@
 <% include ./partials/header.ejs %>
 
 
-<% if (user.message != ""){ %>
-    <p>Anda memiliki pesan baru</p>
+<% if (user.message != "") { %>
     <p><em><%=user.message%></em></p>
 <% } %>
 
 <div class="container">
     <form action="/student/services" method="post">
         <div class="form-group">
-            <label>Nama Mahasiswa</label>
+            <label for="request[student]">Nama Mahasiswa</label>
             <input type="text" class="form-control" name="request[student]" value="<%=user.name%>" readonly>
         </div>
         <div class="form-group">
+                <label>NIM Mahasiswa</label>
             <input type="text" class="form-control" value="<%=user.nim%>" disabled>
         </div>
         <div class="form-group">
+            <label for = "request[type]">Kategori Layanan</label>
             <select class="form-control" name="request[type]" required>
                 <option value="konseling">Konseling</option>
                 <option value="terapi">Terapi</option>

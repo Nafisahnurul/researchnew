@@ -73,7 +73,14 @@ router.get("/services", isLoggedIn, function (req, res) {
         if (err) {
             console.log(err);
         } else {
-            res.render("services", { moment: moment, user: req.session.user, psychologists: allPyschologists });
+            Student.findOne({name: req.session.user.name}, function(err, s){
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.render("services", { moment: moment, user: s, psychologists: allPyschologists });
+                }
+            })
+            
         }
     });
 });
