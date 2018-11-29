@@ -89,12 +89,12 @@
     <% }); %>
 </table>
 <form action="/schedule/" method="get">
-    <input type="submit" name="schedule" value="Schedule" style="width:100%">
+    <input type="submit" name="schedule" class = "btn btn-light" value="Schedule" style="width:100%">
 </form>
 <form action="/schedule/sessionhistory" method="get">
-    <input type="submit" name="sessionhistory" value="Session History" style="width:100%">
+    <input type="submit" name="sessionhistory" class = "btn btn-light" value="Session History" style="width:100%">
 </form>
 <form action="/psychologist/logout" method="get">
-   <input type="submit" name="logout" value="Log out" style="width:100%">
+   <input type="submit" name="logout" class = "btn btn-danger" value="Log out" style="width:100%">
 </form>
 <% include ./partials/footer.ejs %>

@@ -55,46 +55,47 @@
         border-width: 2px;
     }
 </style>
-<h1 align="center" style="margin-bottom: 2cm">Jadwal psikolog</h1>
+<h1 align="center" style="margin-bottom: 2cm">Jadwal Psikolog</h1>
 <table class="table" align="center">
     <tr>
         <th>Waktu mulai</th>
         <th>Waktu berakhir</th>
     </tr>
     <% psychologist.schedule.forEach(function (s){ %>
-        <tr>
-            <td>
-                <%=moment(s.start).calendar()%>
-            </td>
-            <td>
-                <%=moment(s.end).calendar()%>
-            </td>
-        </tr>
-        <% }) %>
+    <tr>
+        <td>
+            <%=moment(s.start).calendar()%>
+        </td>
+        <td>
+            <%=moment(s.end).calendar()%>
+        </td>
+    </tr>
+    <% }) %>
 </table>
 <br>
 <br>
-<h1 align="center" style="margin-bottom: 2cm">Tambah Jadwal</h1>
-<form action="/schedule/" method="post">
-    <div class="form-group">
-        <input id="startTime" width="312" name="startTime" required />
-        <script>
-            $('#startTime').datetimepicker({ footer: true, modal: true });
-        </script>
-    </div>
-    <div class="form-group">
-        <input id="endTime" width="312" name="endTime" required />
-        <script>
-            $('#endTime').datetimepicker({ footer: true, modal: true });
-        </script>
-    </div>
-    <input type="submit">
-</form>
-
+<div class="container mx-auto px-auto py-4" align="center" style="background-color: gainsboro">
+    <h1 align="center" style="margin-bottom: 2cm">Tambah Jadwal</h1>
+    <form action="/schedule/" method="post">
+        <div class="form-group">
+            <input id="startTime" width="312" name="startTime" required />
+            <script>
+                $('#startTime').datetimepicker({ footer: true, modal: true });
+            </script>
+        </div>
+        <div class="form-group">
+            <input id="endTime" width="312" name="endTime" required />
+            <script>
+                $('#endTime').datetimepicker({ footer: true, modal: true });
+            </script>
+        </div>
+        <input class="btn btn-light" type="submit">
+    </form>
+</div>
 <br>
 <br>
 <form action="/schedule/requests" method="get">
-    <input type="submit" name="back" value="Back" style="width:100%">
- </forms>
+    <input type="submit" class="btn btn-warning" name="back" value="Back" style="width:100%">
+    </forms>
 
-<% include ./partials/footer.ejs %>
+    <% include ./partials/footer.ejs %>
