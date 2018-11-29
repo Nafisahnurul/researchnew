@@ -9,7 +9,7 @@ var express = require('express'),
 var Psychologist = require('./models/psychologist');
 
 var authPsyRoutes = require('./controller/authpsy'),
-    authStdRoutes = require('./controller/authstd'),
+    authStdRoutes = require('./controller/student'),
     scheduleRoutes= require('./controller/schedule'),
     indexRoutes   = require('./controller/index');
 
@@ -40,7 +40,7 @@ app.get("/", function (req, res) {
 });
 
 app.use("/", indexRoutes);
-app.use("/student", authStdRoutes);
+app.use("/student", stdRoutes);
 app.use("/psychologist", authPsyRoutes);
 app.use("/schedule", scheduleRoutes);
 
