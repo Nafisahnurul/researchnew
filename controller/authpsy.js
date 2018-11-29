@@ -12,7 +12,7 @@ router.post("/register", function (req, res) {
     Psychologist.register(new Psychologist({ username: req.body.a.name, name: req.body.a.name, id: req.body.a.id }), req.body.password, function (err, user) {
         if (err) {
             console.log(err);
-            return res.render("register");
+            res.redirect("/");
         }
         passport.authenticate("local")(req, res, function () {
             res.redirect("/schedule/requests");
@@ -36,6 +36,7 @@ router.post("/login", passport.authenticate("local", {
 
 router.get("/logout", function(req, res){
     req.logout();
+    res.redirect("/")
 })
 
 module.exports = router;

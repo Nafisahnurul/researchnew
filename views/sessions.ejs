@@ -66,10 +66,10 @@
             <%=session.psychologist%>
         </td>
         <td>
-            <%=method(session.startTime).format('MMMM Do YYYY, h:mm a')%>
+            <%=moment(session.startTime).format('MMMM Do YYYY, h:mm a')%>
         </td>
         <td>
-            <%=method(session.endTime).format('MMMM Do YYYY, h:mm a')%>
+            <%=moment(session.endTime).format('MMMM Do YYYY, h:mm a')%>
         </td>
         <td>
             <% if (session.remark = "") { %>
@@ -83,12 +83,6 @@
             <%=session.remark%>
             <% } %>
         </td>
-        <!-- <td>
-            <form action="/sessions/<%=session._id%>" method="post">
-                <div><input type="text" name="remark" placeholder="catatan sesi"></div>
-                <div><input type="submit"></div>
-            </form>
-        </td> -->
     </tr>
     <% }) %>
 </table>
