@@ -45,6 +45,7 @@
     "passport-google-oauth20": "1.0.0",
     "prompt": "1.0.0",
     "pug": "^2.0.3",
+    "request": "^2.88.0",
     "uglify-js": "3.4.9"
   },
   "devDependencies": {
