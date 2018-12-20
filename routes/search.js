@@ -1,5 +1,6 @@
 var express = require('express'),
     request = require('request'),
+    convert = require('xml-js'),
     router = express.Router();
 
 router.get("/",function (req,res) {
@@ -31,8 +32,17 @@ router.post("/result", function(req,res){
     }
     console.log(url2);
     request(url2,function(error, response, body){
-        parse(body, result);
-        console.log(result.header);
+        var data = convert.xml2json(body, {compact: true, spaces: 4});
+        //var result1 = jsonQuery('.journals', {data: data},{source:romeoapi}).value
+        //console.log(data);
+        var json = JSON.parse(data);
+        var result2 = json["romeoapi"]["journals"]["journal"];
+        console.log(result2);
+        res.render('result', {
+            title: "Research API"
+            ,journals: result2
+        })
+        
     })
 })
 module.exports = router;

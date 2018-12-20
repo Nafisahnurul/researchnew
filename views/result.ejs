@@ -1,0 +1,31 @@
+<% include partials/header.ejs %>
+    <div class="table-wrapper">
+        <% if (journals.length > 0) {%>
+            <table class="table table-hovered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">ISSN</th>
+                        <th scope="col">Zetocpub</th>
+                        <th scope="col">Romeopub</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% journals.forEach((journal, index) => { %>
+                        <tr>
+                            <th scope="row"><%= journal.jtitle._text %></th>
+                            <td><%= journal.issn._text %></td>
+                            <td><%= journal.zetocpub._text %></td>
+                            <td><%= journal.romeopub._text %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <p class="text-center"> No result found </p>
+        <% } %>
+    </div>
+</div>
+<a href="/search/" target="_blank" rel="noopener" class="btn btn-sm btn-success" style="width:100%">Back</a>
+</body>
+</html>
