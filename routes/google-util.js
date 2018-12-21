@@ -8,7 +8,7 @@ var express = require('express'),
 const googleConfig = {
   clientId: '538655775637-ae0jffp2b2euq8gm6i3jbrfdnmel9gb6.apps.googleusercontent.com', // e.g. asdfghjkljhgfdsghjk.apps.googleusercontent.com
   clientSecret: 'TduvWT4kY4zjElbW3LegveQe', // e.g. _ASDFA%DFASDFASDFASD#FAD-
-  redirect: 'http://localhost:5000/search/', // this must match your google api settings
+  redirect: 'https://researchapi.herokuapp.com/search/', // this must match your google api settings
 };
 
 const defaultScope = [
